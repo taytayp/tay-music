@@ -1,0 +1,199 @@
+---
+title: "An Analysis of my 2024 Listening Habits"
+author: "Taylor Falk"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    df_print: paged
+always_allow_html: true
+---
+
+# Introduction
+Over the course of the year, I have maintained a spreedsheet [here]() to track the new albums and EPs of artists I like, were recommended to me by dutiful friends, or think I might be interested in.  
+
+When I found a release, I would write down the artist, album name, release date, when _I_ listened to it for the first time, my rating out of five stars (with half stars allowed), and if it was a full length LP and I had initially rated it 4 stars or higher, I would return to the album at least once to re-listen to it and award it a second, more specific rating. This second re-rate was on a scale of 4.00 to 5.00, allowing for increments in the hundredths.
+
+Finally, I also pulled the most common "tags" for artists from [Last.fm](), using their API to pull tags into my tracking sheet automatically. From this list, I grabbed the top 4 most common tags that weren't "seen live", a tag people use when they've seen that artist perform. When artists weren't so rare as to have tags and there weren't artists with duplicate names, this gave me a very useful semi-controlled vocabulary to categorize the artists and a _"genre"_ level. 
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(wordcloud2)
+library(plotly)
+source("https://raw.githubusercontent.com/iascchen/VisHealth/master/R/calendarHeat.R")
+knitr::opts_chunk$set(echo = F, fig.width = 9.5, warning=FALSE, message=FALSE)
+theme_set(theme_bw())
+table <- read_csv("2024_table.csv", show_col_types = FALSE)
+table %>%
+  mutate(EP_LP = as.factor(`EP/LP`),
+         Re_rate = `Re-rate`,
+         Released = as.Date(paste0(Released, ", 2024"), "%B %d, %Y"),
+         Listened = as.Date(paste0(Listened, ", 2024"), "%B %d, %Y"),
+         Stars = NULL,
+         `Re-rate` = NULL,
+         `EP/LP` = NULL) %>%
+  mutate(Net_Time = Listened - Released) -> table
+table %>%
+  mutate(vibe1 = str_split_fixed(table$Vibes, pattern = ", |,", 5)[,1],
+         vibe2 = str_split_fixed(table$Vibes, pattern = ", |,", 5)[,2],
+         vibe3 = str_split_fixed(table$Vibes, pattern = ", |,", 5)[,3],
+         vibe4 = str_split_fixed(table$Vibes, pattern = ", |,", 5)[,4],
+         Vibes = NULL) -> table
+table[table==""] <- NA
+```
+# Plots
+In an effort to flex stupendously, here are some fun in-depths plots and graphs and doohickeys I've ripped from my data. I am not claiming any statistical observations, and since everything is my subjective rating anyways, the bias is baked in. Can't refute what you can't prove!
+
+## General Fun Stats
+```{r ep_lp_plot}
+ggplot(table, aes(x = EP_LP)) +
+  geom_bar(stat = "count", aes(fill = EP_LP)) + 
+  stat_count(geom = "text", 
+             colour = "white", 
+             size = 3.5, 
+             aes(label = after_stat(count)),
+             position=position_stack(vjust=0.5)) +
+  scale_fill_manual(values=c("#D87CAC", "#247BA0")) +
+  ylab("Count") + 
+  xlab("EP or LP") +
+  ggtitle("Number of EPs and LPs listened") +
+  guides(fill="none") -> p
+ggplotly(tooltip = "count")
+```
+Unsurprisingly, the bulk of my listening is in LPs. The classic "album," to me an LP is the atomic unit for music listening. It's my most preferred method to enjoy an artist, spinning their record all the way through. That's not to say I don't spend a lot of time listening to one-offs or individual songs, it's just not where I spend my time exploring and ranking music.
+
+I enjoyed a lot of EPs this year, more than in years past, but I still find it tricky to spend a lot of time feeling engrossed with them. Always happy to put one on, though.
+```{r curve_of_shame}
+ggplot(table, aes(x = Score)) +
+  guides(fill=guide_legend(title="EP/LP")) +
+  scale_fill_manual(values=c("#D87CAC", "#247BA0")) +
+  ggtitle("EP and LP Counts by Score") +
+  ylab("Count") +
+  geom_bar(aes(fill = EP_LP)) -> p
+ggplotly()
+```
+This is my normal curve of shame 😔. In an ideal world, this would be centered over 2.5 and a healthy, symmetrical curve would extend in both directions. I have a few reasons for this:
+1. I am not going to seek out and choose many albums that fall into my personal 0-2 star range. This is music I think I'll like, so I don't feel too bad if most of the albums here are ones I anticipate liking from the get-go.
+2. I have an unofficial cutoff, where 4 or more stars means "I will try to listen to again, at least once." This means there is going to be a lot of data falling next to the 4 star value, especially albums that fall fuzzily in the 3.5-4.0 star range. I may just want to hear them again to assign a more precise score.
+3. They're my scores!!! Don't live under the boot of AP Statistics forever.
+
+## Release completion (how quickly albums were listened to by release)
+```{r dates_not_the_fruit}
+table %>%
+  ggplot(aes(x=Released, y=Listened, label = Artist, label2 = Album)) +
+  scale_color_gradient2() +
+  ggtitle("Release Date vs. Listen Date by Score") + 
+  xlab("Date Released") + ylab("Date Listened") +
+  geom_jitter(aes(color=Score), width = 5, height = 5) -> p
+ggplotly(tooltip = "all", height = 800, width = 800)
+
+table %>%
+  mutate(Score = as.factor(Score),
+         Net_Time = as.integer(Net_Time)) %>%
+  ggplot(aes(x = Score, y = Net_Time)) +
+  geom_violin() +
+  scale_y_continuous(breaks = c(0, 1, 7, 14, 30, 100), trans="log10") +
+  ggtitle("Violin Plot of Release Dates, Listening Dates, and Score") +
+  ylab("Net time (date listened - date released)") -> p
+ggplotly(tooltip = "Score")
+```
+Delightfully, I've been fairly consistent on listening to releases pretty soon after they come out. Outliers here may not necessarily indicate a negligence in listening to an album I did or didn't like, but many times I don't hear about an album until a few months later and it comes across my proverbial desk!
+
+## Words
+```{r ugh_words}
+table %>%
+  select(vibe1, vibe2, vibe3, vibe4) %>%
+  pivot_longer(c(vibe1, vibe2, vibe3, vibe4)) %>%
+  count(value) %>%
+  arrange(desc(n)) %>%
+  mutate(value = factor(value, levels=value)) -> feminism_table 
+
+feminism_table %>%
+  filter(n > 30) %>%
+  ggplot(aes(x = value, y =  n)) +
+  geom_point() + 
+  xlab("Genre/tag") +
+  ylab("Number of releases tagged") + 
+  ggtitle("Top 30 Most Common Tags Among Releases") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1.025)) -> p
+ggplotly()
+```
+Unsurprisingly, because I am a white man in my 30s, my top genres are in the indie sphere of music. I am more pleased to see a good chunk of experimental, as well as hip-hop, rap, and female vocalists (#feminism). A smaller cohort of shoegaze bands that I would imagine I listened to last year, but the trend is there! There is, naturally, some collision of the data ("hip-hop" and "hip hop" being different tags).
+
+```{r hate_cloud}
+wordcloud2(feminism_table)
+```
+I hate word clouds but this is unfortunately a good application. 
+
+## Best week by number top scores
+```{r top_week}
+table %>%
+  mutate(week = cut.Date(Listened, breaks = "1 week", labels = FALSE)) %>% 
+  group_by(week) %>%
+  summarize(Mean = mean(Score, na.rm = TRUE)) %>%
+  ggplot(aes(x = week, Mean)) +
+  geom_point() +
+  stat_summary(fun.data=mean_cl_normal) + 
+  geom_smooth(method='lm') +
+  xlab("Calendar Week Listened") +
+  ggtitle("Mean Rating Grouped by Calendar Week (Listened)") +
+  ylab("Mean Score") -> p
+ggplotly()
+```
+This chart demonstrates that my ratings seems to increase as the year progresses. I also have about two thoughts for this one:
+1. Earlier in the year is generally slower for big releases (January and February).
+2. Every year I need to "find my bearings" when it comes to rating releases. I think, as the year goes along, I get a better sense of what I find good and bad for _that_ specific year, and start to bump my ratings up for more releases as I listen to them.
+
+```{r top_week2}
+table %>%
+  mutate(week = cut.Date(Released, breaks = "1 week", labels = FALSE)) %>% 
+  group_by(week) %>%
+  summarize(Mean = mean(Score, na.rm = TRUE)) %>%
+  ggplot(aes(x = week, Mean)) +
+  geom_point() +
+  stat_summary(fun.data=mean_cl_normal) + 
+  geom_smooth(method='lm') +
+  xlab("Calendar Week Released") +
+  ggtitle("Mean Rating Grouped by Calendar Week (Released)") +
+  ylab("Mean Score") -> p
+ggplotly()
+```
+If we compare the "released" date instead of the "listened" date, the difference is subtle.
+
+## Most improved re-rate
+```{r best_rating}
+table %>%
+  filter(!is.na(Re_rate)) %>%
+  mutate(artalb = paste0(Artist, " - ", Album),
+         netrate = Re_rate - Score) %>%
+  mutate(abs_netrate = abs(netrate)) %>%
+  arrange(desc(Re_rate)) %>%
+  mutate(Artist = factor(Artist, levels = Artist)) %>%
+  slice(1:25) -> toptable
+ggplot(toptable, aes(x = Artist, y = Re_rate, label = Album)) +
+  geom_blank() + 
+  geom_segment(data = toptable[toptable$netrate > 0, ], 
+               aes(x=Artist, xend=Artist, y=Score, yend=Re_rate), colour="black") +
+  geom_segment(data = toptable[toptable$netrate < 0, ], 
+               aes(x=Artist, xend=Artist, y=Score, yend=Re_rate), colour="red") +
+  geom_point(fill = "lightgreen", color = "black", pch=21) +
+  geom_point(fill = "grey", color = "black", aes(y = Score), pch=21) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1.025)) +
+  scale_y_continuous(breaks = c(4, 4.25, 4.5, 4.75, 5)) +
+  ggtitle("Top 30 Album Ratings, with Re-rates Included") +
+  ylab("Ratings") -> p
+ggplotly()
+```
+This graph represents my changes of opinion when it came to re-listen to an album. A lot can change when you reevaluate something. Some artists went from rather shabby to rather heavy hitters, while some started off at a high 4.5 and moved down to a more modest position. I knew I would love Wishy from the get-go, so that stayed on top 👑. If you want to read more about all of these, check out my actual blog write up <!-- TODO: put in blog link. Add a legend too.-->.
+
+## Heatmap of Days Listened
+```{r, calendar_heat}
+table %>%
+  select(Listened) %>%
+  count(Listened) %>%
+  filter(!is.na(Listened)) %>%
+  mutate(Listened = as.character(Listened)) -> table_cal
+r2g <- c("#D61818", "#FFFFBD", "#B5E384")
+calendarHeat(table_cal$Listened, table_cal$n, ncolors = 10, 
+             color = "r2g", varname="Date Listened", date.form = "%Y-%m-%d")
+```
+I spend a lot of time doing this at work (no shocker, it's a good time to listen to music), so my ratings are often done on weekdays. If I tracked hour rated, I'm sure they would fall squarely in the 9-to-5 time slot. Fun to see how the frequency really drops in December and November. Shout outs to me in August and September for getting a lot done.
