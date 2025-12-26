@@ -1,0 +1,34 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: 2025 Music Feelings - Albums
+author: Taylor Falk
+description: "The best albums of 2025"
+image:
+  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Vincent_Willem_van_Gogh%2C_Dutch_-_Rain_-_Google_Art_Project.jpg/960px-Vincent_Willem_van_Gogh%2C_Dutch_-_Rain_-_Google_Art_Project.jpg"
+  alt: "a portion of van Gogh's \"Rain\""
+pubDate: 2025-01-01
+---
+import albums from "../../data/2025_albums.tsv";
+import AlbumCard from "../../components/AlbumCard.astro"
+import TeenyButton from "../../components/TeenyButton.astro"
+
+
+Thanks for reading! Click below to skip to number 1:
+<div>
+  <TeenyButton link_text="Jump to bottom" astro_link="#conclusion"/>
+</div>
+
+# Introduction
+
+Check out this years list of songs, too: <TeenyButton link_text="Songs list" astro_link="/posts/post-2025-songs"/>
+
+# Albums
+<div>
+  {
+    albums
+    .map((albo) => <AlbumCard place={albo.Place} artist={albo.Artist} album={albo.Album} image={albo.Image} writeup={albo.Writeup} vibes={albo.Vibes} n_highlight={10}/>)
+  }
+</div>
+
+# Conclusion
+Don't forget to check out this years [songs list](/posts/post-2025-songs). 

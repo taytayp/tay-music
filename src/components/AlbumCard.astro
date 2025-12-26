@@ -1,8 +1,8 @@
 ---
-const { place, artist, album, image, writeup } = Astro.props;
+const { place, artist, album, image, writeup, vibes, n_highlight } = Astro.props;
 ---
 
-<div class="container" id={place < 11 ? "gold" : "normal"}>
+<div class="container" id={place <= n_highlight ? "gold" : "normal"}>
   <div class="Place">{place}</div>
   <div class="Art">
     <img src=`${image}` alt=`Album cover from ${artist}'s "${album}"` width="300px" />
@@ -11,6 +11,7 @@ const { place, artist, album, image, writeup } = Astro.props;
     <h3 class="artistname">{artist}</h3>
     <h4 class="albumname"><em>{album}</em></h4>
   </div>
+  <div class="Vibes"><p class="vibes">{vibes}</p></div>
   <div class="Writeup"><p class="writeup">{writeup}</p></div>
 </div>
 
@@ -18,11 +19,12 @@ const { place, artist, album, image, writeup } = Astro.props;
   .container {
     display: grid;
     grid-template-columns: 0.25fr 1.5fr 1.5fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr auto auto;
     margin: 25px;
     grid-auto-flow: row;
     grid-template-areas:
       "Place Art Titles"
+      "_  _ Vibes"
       "Writeup Writeup Writeup";
   }
 
@@ -36,6 +38,9 @@ const { place, artist, album, image, writeup } = Astro.props;
     box-shadow: 0px 0px 11px 8px rgba(0, 0, 0, 0.65);
     -webkit-box-shadow: 0px 0px 11px 8px rgba(0, 0, 0, 0.65);
     -moz-box-shadow: 0px 0px 11px 8px rgba(0, 0, 0, 0.65);
+  }
+  .vibes {
+    font-style: italic;
   }
 
   .Place {
@@ -53,6 +58,10 @@ const { place, artist, album, image, writeup } = Astro.props;
 
   .Titles {
     grid-area: Titles;
+    margin: auto;
+  }
+  .Vibes {
+    grid-area: Vibes;
     margin: auto;
   }
 

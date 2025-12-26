@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogPost from "../components/BlogPost.astro";
-const lastPosts = await Astro.glob("../pages/posts/post-2023-*.md?");
-const newPosts = await Astro.glob("../pages/posts/post-2024-*.md?");
+const lastPosts = await Astro.glob("../pages/posts/post-202{3,4}-*.md?");
+const newPosts = await Astro.glob("../pages/posts/post-2025-*.md?");
 const pageTitle = "My Music Blog";
 ---
 
@@ -17,15 +17,23 @@ const pageTitle = "My Music Blog";
         .map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)
     }
   </ul>
-  <h3>Please take a special look at my data deep dive:</h3>
   <ul>
-    <a href="/2024_music_digest" target="_blank" rel="noopener noreferrer"
-      >Buncha nerd shit</a
+    <a
+      href="/2025_music_digest"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="pointer-events: none;">2025 music analysis (in progress)</a
     >
   </ul>
 
   <hr />
-  <h2>My posts from last year:</h2>
+  <h3>Older data analyses:</h3>
+  <ul>
+    <a href="/2024_music_digest" target="_blank" rel="noopener noreferrer"
+      >2024 music analysis</a
+    >
+  </ul>
+  <h2>My posts from the last couple years:</h2>
   <ul>
     {
       lastPosts
