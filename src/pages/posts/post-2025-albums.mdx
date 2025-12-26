@@ -1,14 +1,14 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 2024 Music Feelings - Albums
+title: 2025 Music Feelings - Albums
 author: Taylor Falk
-description: "The best albums of 2024 (I swear)."
+description: "The best albums of 2025"
 image:
   url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/The_Nightwatch_Jan_Visscher_Cornelissen%2C_possibly_Rembrandt%2C_Claes_van_Cruijsbergen.jpg/1600px-The_Nightwatch_Jan_Visscher_Cornelissen%2C_possibly_Rembrandt%2C_Claes_van_Cruijsbergen.jpg"
   alt: "Rembrandt's \"The Night Watch\", portion"
 pubDate: 2024-01-25
 ---
-import albums from "../../data/2024_albums.tsv";
+import albums from "../../data/2025_albums.tsv";
 import AlbumCard from "../../components/AlbumCard.astro"
 import TeenyButton from "../../components/TeenyButton.astro"
 
@@ -26,9 +26,9 @@ Check out this years list of songs, too: <TeenyButton link_text="Songs list" ast
 <div>
   {
     albums
-    .map((albo) => <AlbumCard place={albo.Place} artist={albo.Artist} album={albo.Album} image={albo.Image} writeup={albo.Writeup} n_highlight={11}/>)
+    .map((albo) => <AlbumCard place={albo.Place} artist={albo.Artist} album={albo.Album} image={albo.Image} writeup={albo.Writeup} n_highlight={10}/>)
   }
 </div>
 
 # Conclusion
-Don't forget to check out this years [songs list](/posts/post-2024-songs). 
+Don't forget to check out this years [songs list](/posts/post-2025-songs). 

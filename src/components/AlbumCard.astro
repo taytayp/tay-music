@@ -1,8 +1,8 @@
 ---
-const { place, artist, album, image, writeup } = Astro.props;
+const { place, artist, album, image, writeup, n_highlight } = Astro.props;
 ---
 
-<div class="container" id={place < 11 ? "gold" : "normal"}>
+<div class="container" id={place < n_highlight ? "gold" : "normal"}>
   <div class="Place">{place}</div>
   <div class="Art">
     <img src=`${image}` alt=`Album cover from ${artist}'s "${album}"` width="300px" />
