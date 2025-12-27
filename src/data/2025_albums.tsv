@@ -1,26 +1,26 @@
 Place	Artist	Album	Type	DateReleased	DateListened	Score	Re-rate	Vibes	Image
-25	Sudan Archives	THE BPM	LP	October 17	October 17	4	4.27	rnb, soul, experimental, female vocalists, neo-soul	../src/images/2025_images/Sudan Archives - THE BPM.jpg
-24	caroline	caroline 2	LP	May 30	June 2	4	4.27	electronic, indie, female vocalists, electronica, japanese	../src/images/2025_images/caroline - caroline 2.jpg
-23	Addison Rae	Addison	LP	June 6	June 9	4	4.28	pop, electropop, alt-pop, queen of pop, female vocalists	../src/images/2025_images/Addison Rae - Addison.jpg
-22	Clipse	Let God Sort Em Out	LP	July 11	July 11	4	4.28	hip-hop, rap, hip hop, virginia, neptunes	../src/images/2025_images/Clipse - Let God Sort Em Out.jpg
-21	Water Damage	Instruments	LP	May 16	May 22	4	4.30	krautrock, instrumental, noise rock, experimental, rock	../src/images/2025_images/Water Damage - Instruments.jpg
-20	Turnstile	NEVER ENOUGH	LP	June 6	June 6	4	4.30	hardcore, hardcore punk, punk, post-hardcore, alternative rock	../src/images/2025_images/Turnstile - NEVER ENOUGH.jpg
-19	Anxious	Bambi	LP	February 21	February 21	4.5	4.35	melodic hardcore, emo, alternative rock, hardcore, indie	../src/images/2025_images/Anxious - Bambi.jpg
-18	Sleigh Bells	Bunky Becky Birthday Boy	LP	April 4	April 4	4	4.35	electronic, noise pop, lo-fi, experimental, female vocalists	../src/images/2025_images/Sleigh Bells - Bunky Becky Birthday Boy.jpg
-17	Chat Pile • Hayden Pedigo	In the Earth Again	LP	October 31	October 31	4.5	4.38	noise rock, sludge metal, sludge, post-hardcore, post-punk	../src/images/2025_images/Chat Pile - In the Earth Again.jpg
-16	Alex G	Headlights	LP	July 18	July 18	4	4.39	singer-songwriter, lo-fi, indie rock, indie, indie folk	../src/images/2025_images/Alex G - Headlights.jpg
-15	Danny Brown	Stardust	LP	November 7	November 7	4	4.39	hip-hop, rap, underground hip-hop, detroit, hardcore hip-hop	../src/images/2025_images/Danny Brown - Stardust.jpg
-14	Hotline TNT	Raspberry Moon	LP	June 20	June 20	4.5	4.40	shoegaze, indie rock, noise rock, lo-fi, indie	../src/images/2025_images/Hotline TNT - Raspberry Moon.jpg
-13	Jane Remover	Revengeseekerz	LP	April 4	April 4	4	4.40	digicore, hyperpop, shoegaze, indietronica, electronic	../src/images/2025_images/Jane Remover - Revengeseekerz.jpg
-12	Militarie Gun	God Save The Gun	LP	October 17	October 17	4	4.40	hardcore, post-hardcore, emo, alternative rock, punk	../src/images/2025_images/Militarie Gun - God Save The Gun.jpg
-11	The Armed	THE FUTURE IS HERE AND EVERYTHING NEEDS TO BE DESTROYED	LP	August 1	August 1	4.5	4.42	mathcore, chaotic hardcore, hardcore, post-hardcore, punk	../src/images/2025_images/The Armed - THE FUTURE IS HERE AND EVERYTHING NEEDS TO BE DESTROYED.jpg
-10	Deafheaven	Lonely People With Power	LP	March 28	March 28	4	4.45	black metal, post-black metal, atmospheric black metal, shoegaze, blackgaze	../src/images/2025_images/Deafheaven - Lonely People With Power.jpg
-9	Ninajirachi	I Love My Computer	LP	August 7	November 6	4	4.58	hyperpop, electronic, electro house, bubblegum bass, house	../src/images/2025_images/Ninajirachi - I Love My Computer.jpg
-8	Wednesday	Bleeds	LP	September 19	September 19	4.5	4.60	shoegaze, indie rock, alt-country, indie, noise rock	../src/images/2025_images/Wednesday - Bleeds.jpg
-7	Model/Actriz	Pirouette	LP	May 2	May 2	4	4.60	post-punk, noise rock, no wave, dance-punk, experimental	../src/images/2025_images/Model_Actriz - Pirouette.jpg
-6	They Are Gutting A Body Of Water	LOTTO	LP	October 17	October 17	4.5	4.67	shoegaze, slowcore, noise rock, indie rock, noise pop	../src/images/2025_images/They Are Gutting A Body Of Water - LOTTO.jpg
-5	Graham Hunt	Timeless World Forever	LP	June 13	June 13	4.5	4.69	indie, indie pop, indie rock, power pop, garage rock	../src/images/2025_images/Graham Hunt - Timeless World Forever.jpg
-4	Rosalía	Lux	LP	November 7	November 7	4	4.70	pop, flamenco, spanish, spain, flamenco nuevo	../src/images/2025_images/Rosalía - Lux.jpg
-3	Momma	Welcome to My Blue Sky	LP	April 4	April 4	4.5	4.85	indie rock, indie, alternative, rock, female vocalists	../src/images/2025_images/Momma - Welcome to My Blue Sky.jpg
-2	Geese	Getting Killed	LP	September 26	September 26	4.5	4.95	indie rock, post-punk, art punk, crank wave, dance-punk	../src/images/2025_images/Geese - Getting Killed.jpg
-1	Oklou	choke enough	LP	February 7	February 11	5	5.00	electronic, french, alternative rnb, angelwave, ambient pop	../src/images/2025_images/Oklou - choke enough.jpg
+25	Sudan Archives	THE BPM	LP	October 17	October 17	4	4.27	rnb, soul, experimental, female vocalists, neo-soul	/src/images/2025_images/Sudan Archives - THE BPM.jpg
+24	caroline	caroline 2	LP	May 30	June 2	4	4.27	electronic, indie, female vocalists, electronica, japanese	/src/images/2025_images/caroline - caroline 2.jpg
+23	Addison Rae	Addison	LP	June 6	June 9	4	4.28	pop, electropop, alt-pop, queen of pop, female vocalists	/src/images/2025_images/Addison Rae - Addison.jpg
+22	Clipse	Let God Sort Em Out	LP	July 11	July 11	4	4.28	hip-hop, rap, hip hop, virginia, neptunes	/src/images/2025_images/Clipse - Let God Sort Em Out.jpg
+21	Water Damage	Instruments	LP	May 16	May 22	4	4.30	krautrock, instrumental, noise rock, experimental, rock	/src/images/2025_images/Water Damage - Instruments.jpg
+20	Turnstile	NEVER ENOUGH	LP	June 6	June 6	4	4.30	hardcore, hardcore punk, punk, post-hardcore, alternative rock	/src/images/2025_images/Turnstile - NEVER ENOUGH.jpg
+19	Anxious	Bambi	LP	February 21	February 21	4.5	4.35	melodic hardcore, emo, alternative rock, hardcore, indie	/src/images/2025_images/Anxious - Bambi.jpg
+18	Sleigh Bells	Bunky Becky Birthday Boy	LP	April 4	April 4	4	4.35	electronic, noise pop, lo-fi, experimental, female vocalists	/src/images/2025_images/Sleigh Bells - Bunky Becky Birthday Boy.jpg
+17	Chat Pile • Hayden Pedigo	In the Earth Again	LP	October 31	October 31	4.5	4.38	noise rock, sludge metal, sludge, post-hardcore, post-punk	/src/images/2025_images/Chat Pile - In the Earth Again.jpg
+16	Alex G	Headlights	LP	July 18	July 18	4	4.39	singer-songwriter, lo-fi, indie rock, indie, indie folk	/src/images/2025_images/Alex G - Headlights.jpg
+15	Danny Brown	Stardust	LP	November 7	November 7	4	4.39	hip-hop, rap, underground hip-hop, detroit, hardcore hip-hop	/src/images/2025_images/Danny Brown - Stardust.jpg
+14	Hotline TNT	Raspberry Moon	LP	June 20	June 20	4.5	4.40	shoegaze, indie rock, noise rock, lo-fi, indie	/src/images/2025_images/Hotline TNT - Raspberry Moon.jpg
+13	Jane Remover	Revengeseekerz	LP	April 4	April 4	4	4.40	digicore, hyperpop, shoegaze, indietronica, electronic	/src/images/2025_images/Jane Remover - Revengeseekerz.jpg
+12	Militarie Gun	God Save The Gun	LP	October 17	October 17	4	4.40	hardcore, post-hardcore, emo, alternative rock, punk	/src/images/2025_images/Militarie Gun - God Save The Gun.jpg
+11	The Armed	THE FUTURE IS HERE AND EVERYTHING NEEDS TO BE DESTROYED	LP	August 1	August 1	4.5	4.42	mathcore, chaotic hardcore, hardcore, post-hardcore, punk	/src/images/2025_images/The Armed - THE FUTURE IS HERE AND EVERYTHING NEEDS TO BE DESTROYED.jpg
+10	Deafheaven	Lonely People With Power	LP	March 28	March 28	4	4.45	black metal, post-black metal, atmospheric black metal, shoegaze, blackgaze	/src/images/2025_images/Deafheaven - Lonely People With Power.jpg
+9	Ninajirachi	I Love My Computer	LP	August 7	November 6	4	4.58	hyperpop, electronic, electro house, bubblegum bass, house	/src/images/2025_images/Ninajirachi - I Love My Computer.jpg
+8	Wednesday	Bleeds	LP	September 19	September 19	4.5	4.60	shoegaze, indie rock, alt-country, indie, noise rock	/src/images/2025_images/Wednesday - Bleeds.jpg
+7	Model/Actriz	Pirouette	LP	May 2	May 2	4	4.60	post-punk, noise rock, no wave, dance-punk, experimental	/src/images/2025_images/Model_Actriz - Pirouette.jpg
+6	They Are Gutting A Body Of Water	LOTTO	LP	October 17	October 17	4.5	4.67	shoegaze, slowcore, noise rock, indie rock, noise pop	/src/images/2025_images/They Are Gutting a Body of Water - LOTTO.jpg
+5	Graham Hunt	Timeless World Forever	LP	June 13	June 13	4.5	4.69	indie, indie pop, indie rock, power pop, garage rock	/src/images/2025_images/Graham Hunt - Timeless World Forever.jpg
+4	ROSALÍA	LUX	LP	November 7	November 7	4	4.70	pop, flamenco, spanish, spain, flamenco nuevo	/src/images/2025_images/ROSALIA - LUX.jpg
+3	Momma	Welcome to My Blue Sky	LP	April 4	April 4	4.5	4.85	indie rock, indie, alternative, rock, female vocalists	/src/images/2025_images/Momma - Welcome to My Blue Sky.jpg
+2	Geese	Getting Killed	LP	September 26	September 26	4.5	4.95	indie rock, post-punk, art punk, crank wave, dance-punk	/src/images/2025_images/Geese - Getting Killed.jpg
+1	Oklou	choke enough	LP	February 7	February 11	5	5.00	electronic, french, alternative rnb, angelwave, ambient pop	/src/images/2025_images/Oklou - choke enough.jpg
