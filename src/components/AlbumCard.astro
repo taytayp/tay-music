@@ -1,31 +1,59 @@
 ---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  place: number;
+  artist: string;
+  album: string;
+  image: string;
+  writeup: string;
+  vibes: string;
+  n_highlight: number;
+}
+
 const { place, artist, album, image, writeup, vibes, n_highlight } = Astro.props;
+var tradImage = true;
+var images = null;
+if (!image.startsWith("http")) {
+  tradImage = false;
+  images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/images/*_images/*.{jpeg,jpg,png,gif}"
+  );
+  if (!images[image]) throw new Error(`"${image}" does not exist in glob: "${images}"`);
+}
 ---
 
 <div class="container" id={place <= n_highlight ? "gold" : "normal"}>
   <div class="Place">{place}</div>
   <div class="Art">
-    <img src=`${image}` alt=`Album cover from ${artist}'s "${album}"` width="300px" />
+    {
+    tradImage ? 
+    <img src=`${image}` alt=`Album cover from ${artist}'s "${album}"` width="400px" /> : 
+    <Image
+      src={images[image]()}
+      alt=`Album cover from ${artist}'s "${album}"`
+      width={400}
+    />}
   </div>
   <div class="Titles">
     <h3 class="artistname">{artist}</h3>
     <h4 class="albumname"><em>{album}</em></h4>
+    <br />
+    <p class="vibes">vibes: {vibes}</p>
+    <div class="Writeup"><p class="writeup">{writeup}</p></div>
   </div>
-  <div class="Vibes"><p class="vibes">{vibes}</p></div>
-  <div class="Writeup"><p class="writeup">{writeup}</p></div>
 </div>
 
 <style>
   .container {
     display: grid;
     grid-template-columns: 0.25fr 1.5fr 1.5fr;
-    grid-template-rows: 1fr auto auto;
+    grid-template-rows: 1fr;
     margin: 25px;
     grid-auto-flow: row;
     grid-template-areas:
       "Place Art Titles"
-      "_  _ Vibes"
-      "Writeup Writeup Writeup";
   }
 
   #gold.container {
